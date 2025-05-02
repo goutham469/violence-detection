@@ -263,15 +263,7 @@ def detect_violence():
         logger.error(f"Unhandled exception in detect_violence: {str(e)}")
         return jsonify({"error": f"Internal server error: {str(e)}"}), 500
 
-# Load model when the app starts to avoid cold start delays
-@app.before_first_request
-def initialize_model():
-    logger.info("Initializing model...")
-    try:
-        load_model()
-        logger.info("Model initialized successfully")
-    except Exception as e:
-        logger.error(f"Error initializing model: {str(e)}")
+
 
 if __name__ == '__main__':
     # Preload the model when the app starts
