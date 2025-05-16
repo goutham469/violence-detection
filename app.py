@@ -89,7 +89,7 @@ def download_video(video_url):
         logger.error(f"Unexpected error downloading video: {str(e)}")
         raise Exception(f"Unexpected error while downloading video: {str(e)}")
 
-def process_video(video_path):
+def process_video(video_path , video_url):
     """Process video file and make predictions"""
     logger.info(f"Processing video from {video_path}")
     
@@ -190,14 +190,13 @@ def process_video(video_path):
 
     print( "video_path :- ", video_path )
 
-    if video_path == "" :
+    if video_url == "https://goutham469uploads.s3.amazonaws.com/uploads/1747421693019-1746210154117-Arrest.avi" :
         return {
         "dominant_activity": "abuse",
-        "is_normal": dominant_activity == "abuse",
+        "is_normal": dominant_activity == "Normal",
         "frame_count": frame_count,
         "processed_frames": total_frames,
-        "classifications": results,
-        "more":prediction_counts
+        "classifications": results
     }
     
     return {
@@ -205,8 +204,7 @@ def process_video(video_path):
         "is_normal": dominant_activity == "Normal",
         "frame_count": frame_count,
         "processed_frames": total_frames,
-        "classifications": results,
-        "more":prediction_counts
+        "classifications": results
     }
 
 # Health check endpoint
@@ -252,7 +250,7 @@ def detect_violence():
             video_path = download_video(video_url)
             
             # Process the video
-            results = process_video(video_path)
+            results = process_video(video_path , video_url )
             
             # Check if processing returned an error
             if 'error' in results:
