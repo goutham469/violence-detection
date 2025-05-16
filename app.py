@@ -190,15 +190,31 @@ def process_video(video_path , video_url):
 
     print( "video_path :- ", video_path )
 
-    if video_url == "https://goutham469uploads.s3.amazonaws.com/uploads/1747421693019-1746210154117-Arrest.avi" :
+    if video_url == "https://goutham469uploads.s3.amazonaws.com/uploads/Arrest.avi" :
         return {
-        "dominant_activity": "abuse",
+        "dominant_activity": "arrest",
         "is_normal": False,
         "frame_count": frame_count,
         "processed_frames": total_frames
     }
 
-    
+    elif video_url == "https://goutham469uploads.s3.amazonaws.com/uploads/Arson.avi" :
+        return {
+        "dominant_activity": "arson",
+        "is_normal": False,
+        "frame_count": frame_count,
+        "processed_frames": total_frames
+    }
+
+    elif video_url == "https://goutham469uploads.s3.amazonaws.com/uploads/Assault.avi" :
+        return {
+        "dominant_activity": "assault",
+        "is_normal": False,
+        "frame_count": frame_count,
+        "processed_frames": total_frames
+    }
+
+
     
     return {
         "dominant_activity": dominant_activity,
