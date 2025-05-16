@@ -1,0 +1,6 @@
+POST http://3.108.9.115:5000/detect
+Content-Type: application/json
+
+{
+    "video_url":"https://goutham469uploads.s3.amazonaws.com/uploads/1746209608859-React App - Google Chrome 2024-05-25 08-34-35.mp4"
+}

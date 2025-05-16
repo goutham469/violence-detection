@@ -104,7 +104,7 @@ def process_video(video_path):
     
     if file_size > max_size:
         logger.warning(f"Video size ({file_size} bytes) exceeds limit ({max_size} bytes)")
-        return {"error": "Video file too large", "statusCode": 413}
+        return {"error": "Video file too large, max possible 100MB.", "statusCode": 413}
     
     # Read video using OpenCV
     cap = cv2.VideoCapture(video_path)
@@ -116,7 +116,7 @@ def process_video(video_path):
     
     frames = []
     frame_count = 0
-    sample_rate = 5  # Process every 5th frame to reduce computation
+    sample_rate = 1  # Process every 5th frame to reduce computation
     
     start_time = time.time()
     while True:
@@ -163,10 +163,14 @@ def process_video(video_path):
     logger.info(f"Prediction completed in {predict_time:.2f}s")
     
     # Count predictions
+    print(predictions)
+
     prediction_counts = {}
     for pred in predictions:
         idx = np.argmax(pred)
         prediction_counts[idx] = prediction_counts.get(idx, 0) + 1
+
+    print(prediction_counts)
 
     # Map index to class name and calculate percentages
     total_frames = len(frames)
@@ -189,7 +193,8 @@ def process_video(video_path):
         "is_normal": dominant_activity == "Normal",
         "frame_count": frame_count,
         "processed_frames": total_frames,
-        "classifications": results
+        "classifications": results,
+        "more":prediction_counts
     }
 
 # Health check endpoint
