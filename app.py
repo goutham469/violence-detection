@@ -116,7 +116,7 @@ def process_video(video_path):
     
     frames = []
     frame_count = 0
-    sample_rate = 2  # Process every 5th frame to reduce computation
+    sample_rate = 5  # Process every 5th frame to reduce computation
     
     start_time = time.time()
     while True:
