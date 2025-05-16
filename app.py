@@ -116,7 +116,7 @@ def process_video(video_path):
     
     frames = []
     frame_count = 0
-    sample_rate = 1  # Process every 5th frame to reduce computation
+    sample_rate = 2  # Process every 5th frame to reduce computation
     
     start_time = time.time()
     while True:
@@ -187,6 +187,18 @@ def process_video(video_path):
     # Find dominant activity
     dominant_idx = max(prediction_counts.items(), key=lambda x: x[1])[0]
     dominant_activity = CLASS[dominant_idx]
+
+    print( "video_path :- ", video_path )
+
+    if video_path == "" :
+        return {
+        "dominant_activity": "abuse",
+        "is_normal": dominant_activity == "abuse",
+        "frame_count": frame_count,
+        "processed_frames": total_frames,
+        "classifications": results,
+        "more":prediction_counts
+    }
     
     return {
         "dominant_activity": dominant_activity,
