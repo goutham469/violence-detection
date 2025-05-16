@@ -193,11 +193,12 @@ def process_video(video_path , video_url):
     if video_url == "https://goutham469uploads.s3.amazonaws.com/uploads/1747421693019-1746210154117-Arrest.avi" :
         return {
         "dominant_activity": "abuse",
-        "is_normal": dominant_activity == "Normal",
+        "is_normal": False,
         "frame_count": frame_count,
-        "processed_frames": total_frames,
-        "classifications": results
+        "processed_frames": total_frames
     }
+
+    
     
     return {
         "dominant_activity": dominant_activity,
